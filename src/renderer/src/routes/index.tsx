@@ -7,14 +7,21 @@ import Leasing from '@/pages/leasing'
 import Overdraft from '@/pages/overdraft'
 import Pawning from '@/pages/pawning'
 import Settings from '@/pages/settings'
+import AddLoan from '@/pages/loans/add-loan'
+import ViewLoan from '@/pages/loans/view-loan'
 
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 const MainRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />}>
         <Route path="" element={<Dashboard />} />
         <Route path="dashboard" element={<Dashboard />} />
+
         <Route path="loans" element={<Loans />} />
+        <Route path="loans/add" element={<AddLoan />} />
+        <Route path="loans/view" element={<ViewLoan />} />
+
         <Route path="leasing" element={<Leasing />} />
         <Route path="overdraft" element={<Overdraft />} />
         <Route path="pawning" element={<Pawning />} />

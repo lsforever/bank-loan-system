@@ -4,34 +4,33 @@ import {
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
-  BreadcrumbPage,
+  //BreadcrumbPage,
   BreadcrumbSeparator
 } from './ui/breadcrumb'
-import { useEffect } from 'react'
+import { ReactElement, useEffect } from 'react'
 
-const PathView = () => {
+const PathView = (): ReactElement => {
   const location = useLocation()
-  useEffect(() => {
-    console.log('')
-  }, [location])
+  useEffect(() => {}, [location])
+  //TODO  {location.pathname}
   return (
     <Breadcrumb className="hidden md:flex">
       <BreadcrumbList>
         <BreadcrumbItem>
           <BreadcrumbLink asChild>
-            <a href="#">Dashboard... {location.pathname}</a>
+            <a href="#">Loans</a>
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
           <BreadcrumbLink asChild>
-            <a href="#">Products</a>
+            <a href="#">Add Loan</a>
           </BreadcrumbLink>
         </BreadcrumbItem>
-        <BreadcrumbSeparator />
+        {/* <BreadcrumbSeparator />
         <BreadcrumbItem>
           <BreadcrumbPage>Edit Product</BreadcrumbPage>
-        </BreadcrumbItem>
+        </BreadcrumbItem> */}
       </BreadcrumbList>
     </Breadcrumb>
   )

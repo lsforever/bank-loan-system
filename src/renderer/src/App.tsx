@@ -1,10 +1,7 @@
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
-import { useState } from 'react'
-
 import { BrowserRouter } from 'react-router-dom'
 
 import Routes from '@/routes'
+import { ThemeProvider } from '@/components/theme-provider'
 
 function App(): JSX.Element {
   // const ipcHandle = (): void => window.electron.ipcRenderer.send('ping')
@@ -19,11 +16,13 @@ function App(): JSX.Element {
   // }
 
   return (
-    <div className="h-screen w-full">
-      <BrowserRouter>
-        <Routes />
-      </BrowserRouter>
-    </div>
+    <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
+      <div className="h-screen w-full">
+        <BrowserRouter>
+          <Routes />
+        </BrowserRouter>
+      </div>
+    </ThemeProvider>
   )
 }
 
