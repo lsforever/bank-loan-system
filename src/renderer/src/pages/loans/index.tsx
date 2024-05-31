@@ -13,10 +13,10 @@ import { ReactElement, useEffect, useState } from 'react'
 import {
   Breadcrumb,
   BreadcrumbItem,
-  BreadcrumbLink,
   BreadcrumbList,
-  BreadcrumbSeparator
+  BreadcrumbPage
 } from '@/components/ui/breadcrumb'
+import { unknown } from 'zod'
 
 async function getData(): Promise<T_Loan[]> {
   // Fetch data from your API here.
@@ -24,14 +24,15 @@ async function getData(): Promise<T_Loan[]> {
     {
       loan_number: 1111111,
       date: 'aaaaaa',
-      name: 'aaaaaa',
-      address: 111111,
+      name: null,
+      address: 'bbbbbbb',
+      mobile_number: 121222,
       savings_account_number: 111111,
-      total_outstanding: 111111,
+      total_outstanding: undefined,
       total_disbursed: 111111,
       due_amount: 111111,
       loan_type: 'aaaaaa',
-      product_type: 'aaaaaa',
+      product_type: 2222222,
       guarantee_1: 111111,
       guarantee_2: 111111
     },
@@ -39,13 +40,14 @@ async function getData(): Promise<T_Loan[]> {
       loan_number: 222222,
       date: 'aaaaaa',
       name: 'bbbbbbbbbbb',
-      address: 111111,
+      address: 'bbbbbbb',
+      mobile_number: 121222,
       savings_account_number: 111111,
       total_outstanding: 111111,
       total_disbursed: 111111,
       due_amount: 111111,
       loan_type: 'aaaaaa',
-      product_type: 'aaaaaa',
+      product_type: 2222222,
       guarantee_1: 111111,
       guarantee_2: 111111
     },
@@ -53,13 +55,14 @@ async function getData(): Promise<T_Loan[]> {
       loan_number: 333333,
       date: 'aaaaaa',
       name: 'ccccccc',
-      address: 111111,
+      address: 'bbbbbbb',
+      mobile_number: 121222,
       savings_account_number: 111111,
       total_outstanding: 111111,
       total_disbursed: 111111,
       due_amount: 111111,
       loan_type: 'aaaaaa',
-      product_type: 'aaaaaa',
+      product_type: 2222222,
       guarantee_1: 111111,
       guarantee_2: 111111
     },
@@ -67,13 +70,14 @@ async function getData(): Promise<T_Loan[]> {
       loan_number: 333333,
       date: 'aaaaaa',
       name: 'ccccccc',
-      address: 111111,
+      address: 'bbbbbbb',
       savings_account_number: 111111,
       total_outstanding: 111111,
       total_disbursed: 111111,
       due_amount: 111111,
+      mobile_number: 121222,
       loan_type: 'aaaaaa',
-      product_type: 'aaaaaa',
+      product_type: 2222222,
       guarantee_1: 111111,
       guarantee_2: 111111
     },
@@ -81,13 +85,14 @@ async function getData(): Promise<T_Loan[]> {
       loan_number: 333333,
       date: 'aaaaaa',
       name: 'ccccccc',
-      address: 111111,
+      address: 'bbbbbbb',
       savings_account_number: 111111,
       total_outstanding: 111111,
       total_disbursed: 111111,
       due_amount: 111111,
       loan_type: 'aaaaaa',
-      product_type: 'aaaaaa',
+      mobile_number: 121222,
+      product_type: 2222222,
       guarantee_1: 111111,
       guarantee_2: 111111
     },
@@ -95,13 +100,14 @@ async function getData(): Promise<T_Loan[]> {
       loan_number: 333333,
       date: 'aaaaaa',
       name: 'ccccccc',
-      address: 111111,
+      address: 'bbbbbbb',
+      mobile_number: 121222,
       savings_account_number: 111111,
       total_outstanding: 111111,
       total_disbursed: 111111,
       due_amount: 111111,
       loan_type: 'aaaaaa',
-      product_type: 'aaaaaa',
+      product_type: 2222222,
       guarantee_1: 111111,
       guarantee_2: 111111
     },
@@ -109,13 +115,14 @@ async function getData(): Promise<T_Loan[]> {
       loan_number: 333333,
       date: 'aaaaaa',
       name: 'ccccccc',
-      address: 111111,
+      address: 'bbbbbbb',
       savings_account_number: 111111,
       total_outstanding: 111111,
       total_disbursed: 111111,
+      mobile_number: 121222,
       due_amount: 111111,
       loan_type: 'aaaaaa',
-      product_type: 'aaaaaa',
+      product_type: 2222222,
       guarantee_1: 111111,
       guarantee_2: 111111
     },
@@ -123,13 +130,14 @@ async function getData(): Promise<T_Loan[]> {
       loan_number: 333333,
       date: 'aaaaaa',
       name: 'ccccccc',
-      address: 111111,
+      address: 'bbbbbbb',
       savings_account_number: 111111,
       total_outstanding: 111111,
       total_disbursed: 111111,
       due_amount: 111111,
       loan_type: 'aaaaaa',
-      product_type: 'aaaaaa',
+      product_type: 2222222,
+      mobile_number: 121222,
       guarantee_1: 111111,
       guarantee_2: 111111
     },
@@ -137,13 +145,14 @@ async function getData(): Promise<T_Loan[]> {
       loan_number: 333333,
       date: 'aaaaaa',
       name: 'ccccccc',
-      address: 111111,
+      address: 'bbbbbbb',
       savings_account_number: 111111,
       total_outstanding: 111111,
       total_disbursed: 111111,
       due_amount: 111111,
+      mobile_number: 121222,
       loan_type: 'aaaaaa',
-      product_type: 'aaaaaa',
+      product_type: 2222222,
       guarantee_1: 111111,
       guarantee_2: 111111
     },
@@ -151,13 +160,14 @@ async function getData(): Promise<T_Loan[]> {
       loan_number: 333333,
       date: 'aaaaaa',
       name: 'ccccccc',
-      address: 111111,
+      address: 'bbbbbbb',
       savings_account_number: 111111,
       total_outstanding: 111111,
       total_disbursed: 111111,
       due_amount: 111111,
       loan_type: 'aaaaaa',
-      product_type: 'aaaaaa',
+      mobile_number: 121222,
+      product_type: 2222222,
       guarantee_1: 111111,
       guarantee_2: 111111
     },
@@ -165,27 +175,29 @@ async function getData(): Promise<T_Loan[]> {
       loan_number: 333333,
       date: 'aaaaaa',
       name: 'ccccccc',
-      address: 111111,
+      address: 'bbbbbbb',
       savings_account_number: 111111,
       total_outstanding: 111111,
       total_disbursed: 111111,
       due_amount: 111111,
       loan_type: 'aaaaaa',
-      product_type: 'aaaaaa',
+      product_type: 2222222,
       guarantee_1: 111111,
+      mobile_number: 121222,
       guarantee_2: 111111
     },
     {
       loan_number: 333333,
       date: 'aaaaaa',
       name: 'ccccccc',
-      address: 111111,
+      address: 'bbbbbbb',
       savings_account_number: 111111,
       total_outstanding: 111111,
       total_disbursed: 111111,
       due_amount: 111111,
       loan_type: 'aaaaaa',
-      product_type: 'aaaaaa',
+      mobile_number: 121222,
+      product_type: 2222222,
       guarantee_1: 111111,
       guarantee_2: 111111
     }
@@ -226,20 +238,8 @@ const PathNode = (): ReactElement => {
     <Breadcrumb className="hidden md:flex">
       <BreadcrumbList>
         <BreadcrumbItem>
-          <BreadcrumbLink asChild>
-            <a href="#">Loans</a>
-          </BreadcrumbLink>
+          <BreadcrumbPage>Loans</BreadcrumbPage>
         </BreadcrumbItem>
-        <BreadcrumbSeparator />
-        <BreadcrumbItem>
-          <BreadcrumbLink asChild>
-            <a href="#">List of Loans</a>
-          </BreadcrumbLink>
-        </BreadcrumbItem>
-        {/* <BreadcrumbSeparator />
-    <BreadcrumbItem>
-      <BreadcrumbPage>Edit Product</BreadcrumbPage>
-    </BreadcrumbItem> */}
       </BreadcrumbList>
     </Breadcrumb>
   )

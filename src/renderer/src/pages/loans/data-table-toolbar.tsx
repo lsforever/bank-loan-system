@@ -55,28 +55,28 @@ export function DataTableToolbar<TData>({ table }: DataTableToolbarProps<TData>)
             <Cross2Icon className="ml-2 h-4 w-4" />
           </Button>
         )} */}
-        <div className="ml-auto flex items-center gap-2 md:pr-8">
-          <Button variant="outline" size="sm" className="h-8 gap-1">
-            <ListFilter className="h-3.5 w-3.5" />
-            <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">Filter</span>
-          </Button>
-
-          <Button
-            size="sm"
-            variant="outline"
-            className="h-8 gap-1"
-            onClick={() => navigate('/loans/view')}
-          >
-            <File className="h-3.5 w-3.5" />
-            <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">Export</span>
-          </Button>
-          <Button size="sm" className="h-8 gap-1" onClick={() => navigate('/loans/add')}>
-            <PlusCircle className="h-3.5 w-3.5" />
-            <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">Add Loan</span>
-          </Button>
-        </div>
       </div>
-      <DataTableViewOptions table={table} />
+      <div className="flex items-center gap-2">
+        <Button variant="outline" size="sm" className="h-8 gap-1">
+          <ListFilter className="h-3.5 w-3.5" />
+          <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">Filter</span>
+        </Button>
+
+        <Button
+          size="sm"
+          variant="outline"
+          className="h-8 gap-1"
+          onClick={() => navigate('/loans/view')}
+        >
+          <File className="h-3.5 w-3.5" />
+          <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">Export</span>
+        </Button>
+        <DataTableViewOptions table={table} />
+        <Button size="sm" className="h-8 gap-1" onClick={() => navigate('/loans/add')}>
+          <PlusCircle className="h-3.5 w-3.5" />
+          <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">Add Loan</span>
+        </Button>
+      </div>
     </div>
   )
 }

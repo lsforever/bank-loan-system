@@ -15,6 +15,14 @@ import {
   FormLabel,
   FormMessage
 } from '@/components/ui/form'
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator
+} from '@/components/ui/breadcrumb'
 import { Input } from '@/components/ui/input'
 import { Separator } from '@/components/ui/separator'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
@@ -22,12 +30,23 @@ import { Textarea } from '@/components/ui/textarea'
 import { ReactElement } from 'react'
 
 const formSchema = z.object({
-  loan_no: z.string().min(2, {
+  loan_number: z.string().min(2, {
     message: 'Loan Number must be at least 2 characters.'
   }),
-  name: z.string().min(2, {
-    message: 'Username must be at least 2 characters.'
-  })
+  name: z
+    .string()
+    .min(2, {
+      message: 'Username must be at least 2 characters.'
+    })
+    .optional(),
+  address: z.string().optional(),
+  mobile_number: z.coerce.number().min(0).optional(),
+  savings_account_number: z.coerce.number().min(0).optional(),
+  total_outstanding: z.coerce.number().optional(),
+  total_disbursed: z.coerce.number().optional(),
+  due_amount: z.coerce.number().optional(),
+  loan_type: z.string().optional(),
+  product_type: z.coerce.number().optional()
 })
 
 const AddLoans = (): ReactElement => {
@@ -35,8 +54,16 @@ const AddLoans = (): ReactElement => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      loan_no: '',
-      name: ''
+      // loan_number: '',
+      // name: '',
+      // address: '',
+      // mobile_number: 0,
+      // savings_account_number: 0,
+      // total_outstanding: 0,
+      // total_disbursed: 0,
+      // due_amount: 0,
+      // loan_type: '',
+      // product_type: 0
     }
   })
 
@@ -49,7 +76,7 @@ const AddLoans = (): ReactElement => {
 
   return (
     <div className="flex flex-col h-screen">
-      <Header />
+      <Header PathNode={<PathNode />} />
       <div className="flex grow p-4">
         <Card className="h-full w-full">
           <CardHeader>
@@ -73,12 +100,12 @@ const AddLoans = (): ReactElement => {
                     <div className="flex flex-col gap-4">
                       <FormField
                         control={form.control}
-                        name="loan_no"
+                        name="loan_number"
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel>Loan Number</FormLabel>
                             <FormControl>
-                              <Input placeholder="loan no" {...field} />
+                              <Input type="number" min="0" placeholder="loan no" {...field} />
                             </FormControl>
                             <FormDescription>Loan number or loan ID.</FormDescription>
                             <FormMessage />
@@ -99,24 +126,6 @@ const AddLoans = (): ReactElement => {
                           </FormItem>
                         )}
                       />
-
-                      <FormField
-                        control={form.control}
-                        name="savings_acc_no"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Savings Account Number</FormLabel>
-                            <FormControl>
-                              <Input placeholder="savings account number" {...field} />
-                            </FormControl>
-                            <FormDescription>
-                              Savings Account Number of the borrower.
-                            </FormDescription>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-
                       <FormField
                         control={form.control}
                         name="address"
@@ -131,52 +140,83 @@ const AddLoans = (): ReactElement => {
                           </FormItem>
                         )}
                       />
-
                       <FormField
                         control={form.control}
-                        name="mobile"
+                        name="mobile_number"
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel>Mobile Number</FormLabel>
                             <FormControl>
-                              <Input placeholder="mobile number" {...field} />
+                              <Input type="number" min="0" placeholder="mobile number" {...field} />
                             </FormControl>
                             <FormDescription>Mobile Number of the borrower.</FormDescription>
                             <FormMessage />
                           </FormItem>
                         )}
                       />
-
                       <FormField
                         control={form.control}
-                        name="outstanding"
+                        name="savings_account_number"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Principle Outstanding</FormLabel>
+                            <FormLabel>Savings Account Number</FormLabel>
                             <FormControl>
-                              <Input placeholder="outstanding amount" {...field} />
+                              <Input
+                                type="number"
+                                min="0"
+                                placeholder="savings account number"
+                                {...field}
+                              />
                             </FormControl>
-                            <FormDescription>Principle Outstanding amount.</FormDescription>
+                            <FormDescription>
+                              Savings Account Number of the borrower.
+                            </FormDescription>
                             <FormMessage />
                           </FormItem>
                         )}
                       />
-
                       <FormField
                         control={form.control}
-                        name="disbursed"
+                        name="total_outstanding"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Principle Outstanding</FormLabel>
+                            <FormControl>
+                              <Input type="number" placeholder="outstanding amount" {...field} />
+                            </FormControl>
+                            <FormDescription>Total Principle Outstanding amount.</FormDescription>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="total_disbursed"
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel>Total Amount Disbursed</FormLabel>
                             <FormControl>
-                              <Input placeholder="disbursed amount" {...field} />
+                              <Input type="number" placeholder="disbursed amount" {...field} />
                             </FormControl>
                             <FormDescription>Total Amount Disbursed.</FormDescription>
                             <FormMessage />
                           </FormItem>
                         )}
                       />
-
+                      <FormField
+                        control={form.control}
+                        name="due_amount"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Due Amount</FormLabel>
+                            <FormControl>
+                              <Input type="number" placeholder="due amount" {...field} />
+                            </FormControl>
+                            <FormDescription>Total amount due.</FormDescription>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
                       <FormField
                         control={form.control}
                         name="product_type"
@@ -184,14 +224,13 @@ const AddLoans = (): ReactElement => {
                           <FormItem>
                             <FormLabel>Product Type</FormLabel>
                             <FormControl>
-                              <Input placeholder="product type" {...field} />
+                              <Input type="number" placeholder="product type" {...field} />
                             </FormControl>
                             <FormDescription>Enter the number of the product type.</FormDescription>
                             <FormMessage />
                           </FormItem>
                         )}
                       />
-
                       <FormField
                         control={form.control}
                         name="loan_type"
@@ -206,25 +245,10 @@ const AddLoans = (): ReactElement => {
                           </FormItem>
                         )}
                       />
-
-                      <FormField
-                        control={form.control}
-                        name="due"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Due Amount</FormLabel>
-                            <FormControl>
-                              <Input placeholder="due amount" {...field} />
-                            </FormControl>
-                            <FormDescription>Total amount due.</FormDescription>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
                     </div>
                   </TabsContent>
 
-                  <TabsContent value="g1">
+                  {/* <TabsContent value="g1">
                     <div className="flex flex-col gap-4">
                       <FormField
                         control={form.control}
@@ -460,7 +484,7 @@ const AddLoans = (): ReactElement => {
                         )}
                       />
                     </div>
-                  </TabsContent>
+                  </TabsContent> */}
                 </Tabs>
 
                 <Button type="submit">Submit</Button>
@@ -470,6 +494,23 @@ const AddLoans = (): ReactElement => {
         </Card>
       </div>
     </div>
+  )
+}
+
+const PathNode = (): ReactElement => {
+  return (
+    <Breadcrumb className="hidden md:flex">
+      <BreadcrumbList>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/loans">Loans</BreadcrumbLink>
+        </BreadcrumbItem>
+
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbPage>Add Loan</BreadcrumbPage>
+        </BreadcrumbItem>
+      </BreadcrumbList>
+    </Breadcrumb>
   )
 }
 

@@ -48,33 +48,61 @@ export const columns: ColumnDef<Loan>[] = [
   },
   {
     accessorKey: 'name',
-    header: ({ column }) => <DataTableColumnHeader column={column} title="Name" />
+    header: ({ column }) => <DataTableColumnHeader column={column} title="Name" />,
+    cell: ({ row }): ReactElement => {
+      return <div>{row.getValue('name') || 'n/a'}</div>
+    }
   },
   {
     accessorKey: 'address',
-    header: 'Address'
+    header: ({ column }) => <DataTableColumnHeader column={column} title="Address" />,
+    cell: ({ row }): ReactElement => {
+      return <div>{row.getValue('address') || 'n/a'}</div>
+    }
+  },
+  {
+    accessorKey: 'mobile_number',
+    header: ({ column }) => <DataTableColumnHeader column={column} title="Mobile Number" />,
+    cell: ({ row }): ReactElement => {
+      return <div>{row.getValue('mobile_number') || 'n/a'}</div>
+    }
   },
   {
     accessorKey: 'savings_account_number',
-    header: 'Savings Acc No'
+    header: ({ column }) => <DataTableColumnHeader column={column} title="Savings Acc No" />,
+    cell: ({ row }): ReactElement => {
+      return <div>{row.getValue('savings_account_number') || 'n/a'}</div>
+    }
   },
   {
     accessorKey: 'loan_type',
-    header: 'Loan Type'
+    header: 'Loan Type',
+    cell: ({ row }): ReactElement => {
+      return <div>{row.getValue('loan_type') || 'n/a'}</div>
+    }
   },
   {
     accessorKey: 'product_type',
-    header: 'Product Type'
+    header: 'Product Type',
+    cell: ({ row }): ReactElement => {
+      return <div>{row.getValue('product_type') || 'n/a'}</div>
+    }
   },
   {
     accessorKey: 'total_outstanding',
     header: () => <div className="text-right">Outstanding</div>,
     cell: ({ row }): ReactElement => {
-      const formatted = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'LKR'
-      }).format(Number(row.getValue('total_outstanding')) / 100)
-      return <div className="text-right">{formatted}</div>
+      const value = row.getValue('total_outstanding')
+      return (
+        <div className="text-right">
+          {value
+            ? new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'LKR'
+              }).format(Number(value) / 100)
+            : 'n/a'}
+        </div>
+      )
     }
   },
 
@@ -82,22 +110,34 @@ export const columns: ColumnDef<Loan>[] = [
     accessorKey: 'total_disbursed',
     header: () => <div className="text-right">Disbursed</div>,
     cell: ({ row }): ReactElement => {
-      const formatted = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'LKR'
-      }).format(Number(row.getValue('total_disbursed')) / 100)
-      return <div className="text-right">{formatted}</div>
+      const value = row.getValue('total_disbursed')
+      return (
+        <div className="text-right">
+          {value
+            ? new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'LKR'
+              }).format(Number(value) / 100)
+            : 'n/a'}
+        </div>
+      )
     }
   },
   {
     accessorKey: 'due_amount',
     header: () => <div className="text-right">Due Amount</div>,
     cell: ({ row }): ReactElement => {
-      const formatted = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'LKR'
-      }).format(Number(row.getValue('due_amount')) / 100)
-      return <div className="text-right">{formatted}</div>
+      const value = row.getValue('due_amount')
+      return (
+        <div className="text-right">
+          {value
+            ? new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'LKR'
+              }).format(Number(value) / 100)
+            : 'n/a'}
+        </div>
+      )
     }
   },
   {
