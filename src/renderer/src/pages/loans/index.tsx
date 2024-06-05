@@ -19,21 +19,21 @@ import {
 
 async function getData(): Promise<T_Loan[]> {
   // console.log('bbbbbbbbbbbbb')
-  // console.log(
-  //   window.api.loans.insertLoan({
-  //     loan_number: 121213232,
-  //     name: 'xxxabababababbaxxxxgg',
-  //     date: 'xxxxx',
-  //     address: null,
-  //     mobile_number: null,
-  //     savings_account_number: 3344,
-  //     total_outstanding: undefined,
-  //     total_disbursed: undefined,
-  //     due_amount: undefined,
-  //     loan_type: 'sssss',
-  //     product_type: 222
-  //   })
-  // )
+  console.log(
+    window.api.loans.insertLoan({
+      loan_number: 77777,
+      name: 'kkkkkk',
+      date: 'ffff',
+      address: null,
+      mobile_number: null,
+      savings_account_number: 3344,
+      total_outstanding: undefined,
+      total_disbursed: undefined,
+      due_amount: undefined,
+      loan_type: 'sssss',
+      product_type: 222
+    })
+  )
   // console.log(window.api.loans.insertLoan(2))
 
   const loans = window.api.loans.getAllLoans()

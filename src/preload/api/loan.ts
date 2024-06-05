@@ -1,4 +1,4 @@
-import { getAllLoans, insertLoan } from '../database/models/loans'
+import { getAllLoans, insertLoan } from '../database/repositories/loans'
 import { Loan as T_loan } from '../../renderer/src/types/loan'
 
 const LoanAPI = {
