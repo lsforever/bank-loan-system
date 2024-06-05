@@ -27,7 +27,7 @@ import { Input } from '@/components/ui/input'
 import { Separator } from '@/components/ui/separator'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Textarea } from '@/components/ui/textarea'
-import { ReactElement } from 'react'
+import { ReactElement, ReactNode } from 'react'
 
 const formSchema = z.object({
   loan_number: z.string().min(2, {
@@ -497,7 +497,7 @@ const AddLoans = (): ReactElement => {
   )
 }
 
-const PathNode = (): ReactElement => {
+const PathNode = (): ReactNode => {
   return (
     <Breadcrumb className="hidden md:flex">
       <BreadcrumbList>

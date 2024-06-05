@@ -1,12 +1,21 @@
 import Header from '@/components/header'
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator
+} from '@/components/ui/breadcrumb'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { ReactNode } from 'react'
 
-const ViewLoan = () => {
+const ViewLoan = (): ReactNode => {
   return (
     <div className="flex flex-col h-screen">
-      <Header />
+      <Header PathNode={<PathNode />} />
       <div className="flex grow p-4">
         <Card className="h-full w-full">
           <CardHeader>
@@ -106,6 +115,23 @@ const ViewLoan = () => {
         </Card>
       </div>
     </div>
+  )
+}
+
+const PathNode = (): ReactNode => {
+  return (
+    <Breadcrumb className="hidden md:flex">
+      <BreadcrumbList>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/loans">Loans</BreadcrumbLink>
+        </BreadcrumbItem>
+
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbPage>Add Loan</BreadcrumbPage>
+        </BreadcrumbItem>
+      </BreadcrumbList>
+    </Breadcrumb>
   )
 }
 

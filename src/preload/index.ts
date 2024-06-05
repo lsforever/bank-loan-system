@@ -1,9 +1,9 @@
 import { contextBridge } from 'electron'
 import { electronAPI } from '@electron-toolkit/preload'
 
-import read from '../renderer/src/database/models/names'
+import API from './api'
 // Custom APIs for renderer
-const api = { names: read() }
+const api = API
 
 // Use `contextBridge` APIs to expose Electron APIs to
 // renderer only if context isolation is enabled, otherwise

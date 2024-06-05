@@ -1,5 +1,6 @@
-import { BrowserRouter } from 'react-router-dom'
-
+import { HashRouter } from 'react-router-dom'
+// BrowserRouter
+// MemoryRouter
 import Routes from '@/routes'
 import { ThemeProvider } from '@/components/theme-provider'
 
@@ -18,9 +19,9 @@ function App(): JSX.Element {
   return (
     <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
       <div className="h-screen w-full">
-        <BrowserRouter>
+        <HashRouter>
           <Routes />
-        </BrowserRouter>
+        </HashRouter>
       </div>
     </ThemeProvider>
   )

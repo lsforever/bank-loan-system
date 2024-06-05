@@ -13,12 +13,12 @@ import {
 
 import AvatarImg from '../assets/avatar.jpg'
 import { LineChart, Users2, Package, ShoppingCart, PanelLeft } from 'lucide-react'
-import { ReactElement, ReactNode } from 'react'
+import { ReactNode } from 'react'
 
 type HeaderProps = {
   PathNode: ReactNode
 }
-const Header = ({ PathNode }: HeaderProps): ReactElement => {
+const Header = ({ PathNode }: HeaderProps): ReactNode => {
   return (
     <header className="flex my-1 py-1 items-center justify-center gap-4 border-b border-0 bg-transparent px-6">
       <div className="flex-1">

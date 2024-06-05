@@ -10,17 +10,18 @@ export type Loan = {
   due_amount: number | not_available
   loan_type: string | not_available
   product_type: number | not_available
-  guarantee_1: number
-  guarantee_2: number
+  // guarantee_1: number
+  // guarantee_2: number
 }
 
 export type Guarantee = {
-  guarantee_id: string
+  loan_number: number
+  guarantee_number: number
   name: string | not_available
-  account_number: number | not_available
   address: string | not_available
   nic: string | not_available
   mobile_number: number | not_available
+  account_number: number | not_available
   income: number | not_available
   occupation: string | not_available
   working_place: string | not_available

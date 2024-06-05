@@ -1,7 +1,8 @@
-appId: com.electron.app
-productName: electron-app
+appId: com.lsforever.bocnpaapp
+productName: NPA-Management
 directories:
   buildResources: build
+buildDependenciesFromSource: true
 files:
   - '!**/.vscode/*'
   - '!src/*'
@@ -11,8 +12,10 @@ files:
   - '!{tsconfig.json,tsconfig.node.json,tsconfig.web.json}'
 asarUnpack:
   - resources/**
+extraResources:
+  - './src/preload/database/bank_database.db'
 win:
-  executableName: electron-app
+  executableName: npa-management-app
 nsis:
   artifactName: ${name}-${version}-setup.${ext}
   shortcutName: ${productName}

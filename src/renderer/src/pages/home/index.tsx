@@ -11,13 +11,13 @@ import {
 import { TooltipProvider } from '@/components/ui/tooltip'
 
 import { Outlet } from 'react-router-dom'
-import { useState } from 'react'
+import { ReactNode, useState } from 'react'
 
 import SidenavItem from '@/components/sidenav-item'
 
 import { ModeToggle } from '@/components/mode-toggle'
 
-const Home = () => {
+const Home = (): ReactNode => {
   const [currentActive, setCurrentActive] = useState('dashboard')
 
   return (
