@@ -2,6 +2,7 @@ import { app, shell, BrowserWindow, ipcMain } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
+import migrateDatabase from '../preload/database/migrate'
 
 function createWindow(): void {
   // Create the browser window.
@@ -43,7 +44,7 @@ function createWindow(): void {
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
   // Set app user model id for windows
-  electronApp.setAppUserModelId('com.lsforever.loansystem')
+  electronApp.setAppUserModelId('com.lsforever.npamanagement')
 
   // Default open or close DevTools by F12 in development
   // and ignore CommandOrControl + R in production.
@@ -56,6 +57,9 @@ app.whenReady().then(() => {
   ipcMain.on('ping', () => console.log('pong'))
 
   createWindow()
+
+  //Database Migrations If available
+  migrateDatabase()
 
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the

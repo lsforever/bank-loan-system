@@ -1,6 +1,7 @@
 import db from '../db'
-import { Loan as loanT } from '../../../renderer/src/types/loan'
+import { Loan as loanT, Guarantee as GuaranteeT } from '../../../renderer/src/types/loan'
 import loans from '../schemas/loans'
+import loanGuarantee from './../schemas/loans-guarantees'
 
 const getAllLoans = (): loanT[] => {
   return db.select().from(loans).all()
@@ -10,7 +11,14 @@ const insertLoan = (loan_value: loanT): void => {
   db.insert(loans).values(loan_value).run()
 }
 
-export { getAllLoans, insertLoan }
+const insertLoanWithGuarantees = (loan_value: loanT, g1: GuaranteeT, g2: GuaranteeT): void => {
+  db.transaction((tx) => {
+    tx.insert(loans).values(loan_value).run()
+    tx.insert(loanGuarantee).values([g1, g2]).run()
+  })
+}
+
+export { getAllLoans, insertLoan, insertLoanWithGuarantees }
 
 //const table_name = 'loan'
 // const getAllLoans = (): T_loan[] => {

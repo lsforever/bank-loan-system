@@ -3,6 +3,7 @@ import { HashRouter } from 'react-router-dom'
 // MemoryRouter
 import Routes from '@/routes'
 import { ThemeProvider } from '@/components/theme-provider'
+import { Toaster } from '@/components/ui/sonner'
 
 function App(): JSX.Element {
   // const ipcHandle = (): void => window.electron.ipcRenderer.send('ping')
@@ -23,6 +24,8 @@ function App(): JSX.Element {
           <Routes />
         </HashRouter>
       </div>
+      {/* <Toaster richColors closeButton /> */}
+      <Toaster richColors />
     </ThemeProvider>
   )
 }

@@ -42,9 +42,17 @@ export const columns: ColumnDef<Loan>[] = [
     accessorKey: 'loan_number',
     header: ({ column }) => <DataTableColumnHeader column={column} title="Loan No" />
   },
+  // {
+  //   accessorKey: 'date',
+  //   header: 'Date'
+  // },
   {
     accessorKey: 'date',
-    header: 'Date'
+    header: 'Date',
+    cell: ({ row }): ReactElement => {
+      const dateString: string | undefined = row.getValue('date')
+      return <div>{dateString ? new Date(dateString).toLocaleDateString('en-GB') : 'n/a'}</div>
+    }
   },
   {
     accessorKey: 'name',

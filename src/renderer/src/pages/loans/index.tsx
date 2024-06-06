@@ -18,26 +18,23 @@ import {
 } from '@/components/ui/breadcrumb'
 
 async function getData(): Promise<T_Loan[]> {
-  // console.log('bbbbbbbbbbbbb')
-  console.log(
-    window.api.loans.insertLoan({
-      loan_number: 77777,
-      name: 'kkkkkk',
-      date: 'ffff',
-      address: null,
-      mobile_number: null,
-      savings_account_number: 3344,
-      total_outstanding: undefined,
-      total_disbursed: undefined,
-      due_amount: undefined,
-      loan_type: 'sssss',
-      product_type: 222
-    })
-  )
-  // console.log(window.api.loans.insertLoan(2))
-
+  // console.log(
+  //   window.api.loans.insertLoan({
+  //     loan_number: 77777,
+  //     name: 'kkkkkk',
+  //     date: 'ffff',
+  //     address: null,
+  //     mobile_number: null,
+  //     savings_account_number: 3344,
+  //     total_outstanding: undefined,
+  //     total_disbursed: undefined,
+  //     due_amount: undefined,
+  //     loan_type: 'sssss',
+  //     product_type: 222
+  //   })
+  // )
   const loans = window.api.loans.getAllLoans()
-  console.log(loans)
+  //console.log(loans)
 
   return loans
   // Fetch data from your API here.
@@ -209,6 +206,7 @@ const Loan = (): ReactElement => {
     getData().then((response) => setData(response))
   }, [])
 
+  //TODO send loader to the table
   return (
     <div className="flex flex-col h-screen">
       <Header PathNode={<PathNode />} />
